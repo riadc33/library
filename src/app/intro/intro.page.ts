@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-intro',
@@ -36,11 +37,17 @@ export class IntroPage implements OnInit {
     }
   ]
  
-  goToHome(){
-    this.navCtrl.navigateForward('/home');
-  }
-  constructor(private navCtrl: NavController){
+  constructor(private navCtrl: NavController,private storage: Storage){
+    this.storage.create();
 
+  }
+
+  async goToHome(){
+
+  await this.storage.set('intro', true);
+  console.log('intro');
+  
+    this.navCtrl.navigateForward('/home');
   }
 
   ngOnInit() {
