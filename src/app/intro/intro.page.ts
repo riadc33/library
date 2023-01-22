@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -8,12 +8,14 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./intro.page.scss'],
 })
 export class IntroPage implements OnInit {
+
   slideOpt = {
-    initialSlide: 1, //slide inicial (primero) [0,1,2,3]
+    initialSlide: 0, //slide inicial (primero) [0,1,2,3]
     slidesPerView: 1, //configuramos un slide por vista
     centerSlides: true, //que las slides enten centradas
     speed: 400 //velocidad movimiento de los slides
   }
+
   slides = [
     {
       title: "Oso Panda",
@@ -36,20 +38,15 @@ export class IntroPage implements OnInit {
       description: "Mamífero paquidermo de gran tamaño, el mayor de los terrestres, con la piel de color gris oscuro, gruesa, rugosa y sin pelo, grandes orejas colgantes, larga trompa prensil, cuatro extremidades gruesas y casi cilíndricas, cola larga, y dos colmillos muy largos de punta cónica; se alimenta de vegetales, y vive en diversos hábitats de Asia y África."
     }
   ]
- 
-  constructor(private navCtrl: NavController,private storage: Storage){
+
+  constructor(private router: Router, private storage: Storage) { 
     this.storage.create();
-
   }
 
-  async goToHome(){
-
-  await this.storage.set('intro', true);
-  console.log('intro');
-  
-    this.navCtrl.navigateForward('/home');
+  finish(){
+    this.storage.set("isIntroShowed", true);
+    this.router.navigateByUrl("/login");
   }
-
   ngOnInit() {
   }
 
