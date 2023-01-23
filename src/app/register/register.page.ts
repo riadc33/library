@@ -11,7 +11,51 @@ import { AuthenticateService } from '../services/authenticate.service';
 export class RegisterPage implements OnInit {
 
   registerForm: FormGroup;
+  documentTypes = [
+    {
+      label: "Tarjeta de identidad",
+      value: 'TI'
+    },
+    {
+      label: "Cédula",
+      value: 'CC'
+    },
+    {
+      label: "Cédula de extranjería",
+      value: 'CE'
+    },
+    {
+      label: "Registro civil",
+      value: 'RC'
+    },
+    {
+      label: "Pasaporte",
+      value: 'PS'
+    },
+  ]
+  careers = [
+    {
+      label: "Ingenieria de sistemas",
+      value: 0
+    },
+    {
+      label: "Ingenieria Electronica",
+      value: 1
+    },
+    {
+      label: "Ingenieria industrial",
+      value: 2
+    },
+    {
+      label: "Administracion de empresas",
+      value: 3
+    },
+    {
+      label: "Administración Logística",
+      value: 4
+    }
 
+  ]
   constructor(private navCtrl: NavController, 
     private formBuilder: FormBuilder,
     private authenticate: AuthenticateService

@@ -7,7 +7,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 <figure class="size-logo">
   <img src="./assets/logo.png" />
@@ -24,8 +23,10 @@
   </ion-item>
   
   <ion-item>
-    <ion-label position="floating">Tipo documento</ion-label>
-    <ion-input placeholder="Enter text" formControlName="document_type"></ion-input>
+    <ion-select formControlName="document_type" interface="popover" placeholder="Tipo documento">
+      <ion-select-option *ngFor="let option of documentTypes"
+        value="{{option.value}}">{{option.label}}</ion-select-option>
+    </ion-select>
   </ion-item>
   
   <ion-item>
@@ -33,10 +34,10 @@
     <ion-input placeholder="Enter text" formControlName="document_number"> </ion-input>
   </ion-item>
   
-  <ion-item>
-    <ion-label position="floating">Carrera</ion-label>
-    <ion-input placeholder="Enter text" formControlName="career"></ion-input>
-  </ion-item>
+  <ion-select formControlName="career" interface="popover" placeholder="Carrera">
+    <ion-select-option *ngFor="let option of careers"
+      value="{{option.value}}">{{option.label}}</ion-select-option>
+  </ion-select>
   
   <ion-item>
     <ion-label position="floating">Email</ion-label>
@@ -45,12 +46,12 @@
   
   <ion-item>
     <ion-label position="floating">Contraseña</ion-label>
-    <ion-input placeholder="Enter text" formControlName="password"></ion-input>
+    <ion-input placeholder="Enter text" formControlName="password" type="password"></ion-input>
   </ion-item>
 
   <ion-button 
 shape="round"
-color="warning"
+color="secondary"
 type="submit">
   Registrarse
 </ion-button>

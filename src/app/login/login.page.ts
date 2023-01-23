@@ -16,8 +16,14 @@ export class LoginPage implements OnInit {
     email: [
       { type: "required", message: "El Email es Obligatorio" },
       { type: "pattern", message: "Tu email no es valido" }
+    ],
+    password: [
+      { type: "required", message: "El Password es Obligatorio" },
+      { type: "minLength", message: "La contraseña debe tener almenos 5 caracteres " }
     ]
   }
+ 
+  
 
   errorMessage: any;
 
@@ -39,7 +45,7 @@ export class LoginPage implements OnInit {
         "",
         Validators.compose([
           Validators.required,
-          Validators.minLength(5)
+          Validators.minLength(5),
         ])
       )
     });
@@ -47,7 +53,9 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
+  goToRegister(){
+    this.navCtrl.navigateForward('/register');
+  }
   loginUser(credentials: any) {
     console.log(credentials);
     this.auth.loginUser(credentials).then( res => {

@@ -24,3 +24,26 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.height-full{
+    height: 100%;
+}
+
+.width-full{
+    width: 100%;
+}
+.flex{
+    display: flex;
+}
+.flex-row{
+    flex-direction: row;
+}
+.flex-col{
+    flex-direction: column;
+}
+.default-radius{
+    border-radius: 10px;
+}
+bg-secundary{
+    background:var(--the-bg-secondary);
+}

@@ -1,7 +1,7 @@
 <ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="ion-justify-content-center flex height-full flex-col ion-padding ">
 
-    <ion-item fill="solid">
+    <ion-item fill="solid"  class="default-radius">
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email"></ion-input>
     </ion-item>
@@ -11,23 +11,36 @@
     loginForm.get('email')?.hasError(validation.type) && 
     (loginForm.get('email')?.dirty || 
     loginForm.get('email')?.touched)
-    ">
+    "
+    class="ion-padding">
       {{validation.message}}
     </div>
   </ng-container>
 </div>
-    <ion-item fill="solid">
+    <ion-item fill="solid" class="default-radius">
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input formControlName="password"></ion-input>
+      <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
-<ion-button 
+    <ng-container *ngFor="let validation of validation_message.password">
+      <div *ngIf="
+      loginForm.get('password')?.hasError(validation.type) && 
+      (loginForm.get('password')?.dirty || 
+      loginForm.get('password')?.touched)      
+      "
+      class="ion-padding">
+        {{validation.message}}
+      </div>
+    </ng-container>
+<ion-button  
+class="ion-margin-top"
 shape="round"
-color="warning"
+color="secondary"
 [disabled]="!loginForm.valid"
 type="submit">
   Login
 </ion-button>
-  </form>
+<button class="ion-margin-top button-register"(click)="goToRegister()">Registro</button>
+</form>
 {{ errorMessage }}
 </ion-content>  
 <ion-footer>

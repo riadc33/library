@@ -1,0 +1,13 @@
+ion-content{
+    --background: var(--the-bg-primary);
+  }
+ion-item{
+    --background: var(--the-bg-primary);
+}
+.button-register{
+    background: transparent;
+    font-size: 16px;
+}
+.button-register:hover{
+    color:#50c8ff
+}
