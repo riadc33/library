@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authenticate.service';
 
@@ -56,6 +56,16 @@ export class RegisterPage implements OnInit {
     }
 
   ]
+  validation_message = {
+    email: [
+      { type: "required", message: "El Email es Obligatorio" },
+      { type: "pattern", message: "Tu email no es valido" }
+    ],
+    password: [
+      { type: "required", message: "El Password es Obligatorio" },
+      { type: "minLength", message: "La contraseña debe tener almenos 5 caracteres " }
+    ]
+  }
   constructor(private navCtrl: NavController, 
     private formBuilder: FormBuilder,
     private authenticate: AuthenticateService
@@ -67,7 +77,13 @@ export class RegisterPage implements OnInit {
       document_type: new FormControl(),
       document_number: new FormControl(),
       career: new FormControl(),
-      email: new FormControl(),
+      email: new FormControl(
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+        ])
+      ),
       password: new FormControl(
       )
     });

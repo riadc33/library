@@ -7,11 +7,11 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content >
 <figure class="size-logo">
   <img src="./assets/logo.png" />
 </figure>
-<form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)">
+<form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)" >
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
     <ion-input placeholder="Enter text" formControlName="name"></ion-input>
@@ -33,11 +33,13 @@
     <ion-label position="floating">Numero documento</ion-label>
     <ion-input placeholder="Enter text" formControlName="document_number"> </ion-input>
   </ion-item>
-  
-  <ion-select formControlName="career" interface="popover" placeholder="Carrera">
-    <ion-select-option *ngFor="let option of careers"
+  <ion-item>
+
+    <ion-select formControlName="career" interface="popover" placeholder="Carrera">
+      <ion-select-option *ngFor="let option of careers"
       value="{{option.value}}">{{option.label}}</ion-select-option>
-  </ion-select>
+    </ion-select>
+  </ion-item>
   
   <ion-item>
     <ion-label position="floating">Email</ion-label>
@@ -48,13 +50,15 @@
     <ion-label position="floating">Contraseña</ion-label>
     <ion-input placeholder="Enter text" formControlName="password" type="password"></ion-input>
   </ion-item>
+<div class="flex item-center justify-center">
 
   <ion-button 
-shape="round"
-color="secondary"
-type="submit">
+  shape="round"
+  color="secondary"
+  type="submit">
   Registrarse
 </ion-button>
+</div>
 
 </form>
 

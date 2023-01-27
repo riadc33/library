@@ -44,6 +44,15 @@
 .default-radius{
     border-radius: 10px;
 }
-bg-secundary{
+.bg-secundary{
     background:var(--the-bg-secondary);
+}
+.bg-primary{
+    background:var(--the-bg-primary);
+}
+.item-center{
+align-items: center;;
+}
+.justify-center{
+    justify-content: center;
 }
