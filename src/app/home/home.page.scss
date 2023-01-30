@@ -35,4 +35,11 @@ ion-card ion-card-title {
 ion-card ion-card-content {
     font-size: .8em;
     text-transform: lowercase;
+   
+} 
+ion-content {
+    --background:var(--the-bg-primary);
+}
+.card-background{
+    background-color: var(--the-bg-secondary);
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authenticate.service';
 import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginPage implements OnInit {
     ],
     password: [
       { type: "required", message: "El Password es Obligatorio" },
-      { type: "minLength", message: "La contraseña debe tener almenos 5 caracteres " }
+      { type: "minlength", message: "La contraseña debe tener al menos 5 caracteres " }
     ]
   }
  
@@ -30,7 +31,9 @@ export class LoginPage implements OnInit {
   constructor(private formBuilder: FormBuilder, 
     private auth: AuthenticateService, 
     private navCtrl: NavController,
-    private storage: Storage
+    private storage: Storage,
+    private alertController: AlertController
+
     ) { 
 
     this.loginForm = this.formBuilder.group({
@@ -50,7 +53,17 @@ export class LoginPage implements OnInit {
       )
     });
   }
-
+  async presentAlert(header: any, subHeader: any, message: any) {
+    const alert = await this.alertController.create(
+      {
+        header: header,
+        subHeader: subHeader,
+        message: message,
+        buttons: ['Ok']
+      }
+    );
+    await alert.present();
+  }
   ngOnInit() {
   }
   goToRegister(){
@@ -64,6 +77,8 @@ export class LoginPage implements OnInit {
       this.storage.set("user_id", res.user.id);
       this.navCtrl.navigateForward("/menu/home");
     }).catch(err => {
+      console.log('err',err);
+      this.presentAlert("!Ops", "hubo un error", "la contraseña o el correo no son correctos")
       this.errorMessage = err
     });
   }

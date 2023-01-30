@@ -12,7 +12,7 @@
     (loginForm.get('email')?.dirty || 
     loginForm.get('email')?.touched)
     "
-    class="ion-padding">
+    class="ion-padding color-error">
       {{validation.message}}
     </div>
   </ng-container>
@@ -27,7 +27,7 @@
       (loginForm.get('password')?.dirty || 
       loginForm.get('password')?.touched)      
       "
-      class="ion-padding">
+      class="ion-padding color-error">
         {{validation.message}}
       </div>
     </ng-container>
@@ -39,12 +39,8 @@ color="secondary"
 type="submit">
   Login
 </ion-button>
-<button class="ion-margin-top button-register"(click)="goToRegister()">Registro</button>
+<button class="ion-margin-top button-register"(click)="goToRegister()" type="button">Registro</button>
 </form>
 {{ errorMessage }}
 </ion-content>  
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>Title</ion-title>
-  </ion-toolbar>
-</ion-footer>
+

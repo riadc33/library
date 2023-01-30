@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../services/authenticate.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ export class RegisterPage implements OnInit {
   documentTypes = [
     {
       label: "Tarjeta de identidad",
-      value: 'TI'
+      value: 'ti'
     },
     {
       label: "Cédula",
@@ -22,15 +23,15 @@ export class RegisterPage implements OnInit {
     },
     {
       label: "Cédula de extranjería",
-      value: 'CE'
+      value: 'ce'
     },
     {
       label: "Registro civil",
-      value: 'RC'
+      value: 'rc'
     },
     {
       label: "Pasaporte",
-      value: 'PS'
+      value: 'ps'
     },
   ]
   careers = [
@@ -39,8 +40,8 @@ export class RegisterPage implements OnInit {
       value: 'sistemas'
     },
     {
-      label: "Ingenieria Electronica",
-      value: 'electronica'
+      label: "Contaduria",
+      value: 'contaduria'
     },
     {
       label: "Ingenieria industrial",
@@ -48,12 +49,9 @@ export class RegisterPage implements OnInit {
     },
     {
       label: "Administracion de empresas",
-      value: 'Administracion'
+      value: 'administracion'
     },
-    {
-      label: "Administración Logística",
-      value: 'Logística'
-    }
+    
 
   ]
   validation_message = {
@@ -63,20 +61,62 @@ export class RegisterPage implements OnInit {
     ],
     password: [
       { type: "required", message: "El Password es Obligatorio" },
-      { type: "minLength", message: "La contraseña debe tener almenos 5 caracteres " }
+      { type: "minlength", message: "La contraseña debe tener almenos 5 caracteres " }
+    ],
+    name: [
+      { type: "required", message: "El Nombre es Obligatorio" },
+    ],
+    last_name: [
+      { type: "required", message: "El Apellido es Obligatorio" },
+    ],
+    document_type: [
+      { type: "required", message: "El tipo de documento es Obligatorio" },
+    ],
+    document_number: [
+      { type: "required", message: "El documento es Obligatorio" },
+    ],
+    career: [
+      { type: "required", message: "la carrera es Obligatorio" },
     ]
   }
   constructor(private navCtrl: NavController, 
     private formBuilder: FormBuilder,
-    private authenticate: AuthenticateService
+    private authenticate: AuthenticateService,
+    private alertController: AlertController
+
     ) { 
 
     this.registerForm = this.formBuilder.group({
-      name: new FormControl(),
-      last_name: new FormControl(),
-      document_type: new FormControl(),
-      document_number: new FormControl(),
-      career: new FormControl(),
+      name: new FormControl("",
+      Validators.compose([
+        Validators.required,
+
+      ])
+    ),
+      last_name: new FormControl("",
+      Validators.compose([
+        Validators.required,
+
+      ])
+    ),
+      document_type: new FormControl("",
+      Validators.compose([
+        Validators.required,
+
+      ])
+    ),
+      document_number: new FormControl("",
+      Validators.compose([
+        Validators.required,
+
+      ])
+    ),
+      career: new FormControl(
+      Validators.compose([
+        Validators.required,
+
+      ])
+    ),
       email: new FormControl(
         "",
         Validators.compose([
@@ -85,13 +125,28 @@ export class RegisterPage implements OnInit {
         ])
       ),
       password: new FormControl(
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(5),
+        ])
       )
     });
   }
 
   ngOnInit() {
   }
-
+  async presentAlert(header: any, subHeader: any, message: any) {
+    const alert = await this.alertController.create(
+      {
+        header: header,
+        subHeader: subHeader,
+        message: message,
+        buttons: ['Ok']
+      }
+    );
+    await alert.present();
+  }
   goToLogin(){
     this.navCtrl.navigateBack("/login");
   }
@@ -100,6 +155,10 @@ export class RegisterPage implements OnInit {
     console.log(register_form)
     this.authenticate.registerUser(register_form).then(() => {
       this.navCtrl.navigateForward("/login");
+    }).catch(err => {
+      console.log('err',err);
+      this.presentAlert("!Ops", "hubo un error", err)
+
     });
   }
 

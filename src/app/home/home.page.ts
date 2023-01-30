@@ -15,7 +15,7 @@ export class HomePage {
   slideOps = {
     initialSlide: 1,
     slidesPerView: 3,
-    centeredSlides: true,
+    centeredSlides: false,
     speed: 400
   }
   constructor(

@@ -1,8 +1,16 @@
 .size-logo img{
-    max-width: 100px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
     display: block;
 }
 ion-content{
     --background: var(--the-bg-primary);
 }
+ion-item{
+    --background: var(--the-bg-primary);
+}
+.button-register{
+margin-top: 20px;
+}
+
