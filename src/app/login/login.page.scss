@@ -1,5 +1,6 @@
 ion-content{
     --background: var(--the-bg-primary);
+
   }
 ion-item{
     --background: var(--the-bg-primary);
@@ -10,4 +11,14 @@ ion-item{
 }
 .button-register:hover{
     color:#50c8ff
+}
+.size-logo img{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-top:15px;
+    display: block;
+}
+.size-logo{
+    margin-top:40px
 }

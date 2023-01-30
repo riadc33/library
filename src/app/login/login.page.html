@@ -1,5 +1,8 @@
 <ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="ion-justify-content-center flex height-full flex-col ion-padding ">
+  <figure class="size-logo">
+    <img src="./assets/logo.png"  />
+  </figure>
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="ion-justify-content-center flex  flex-col ion-padding ">
 
     <ion-item fill="solid"  class="default-radius">
       <ion-label position="floating">Email</ion-label>
