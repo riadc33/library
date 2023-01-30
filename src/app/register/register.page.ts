@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
     },
     {
       label: "Cédula",
-      value: 'CC'
+      value: 'cc'
     },
     {
       label: "Cédula de extranjería",
@@ -36,23 +36,23 @@ export class RegisterPage implements OnInit {
   careers = [
     {
       label: "Ingenieria de sistemas",
-      value: 0
+      value: 'sistemas'
     },
     {
       label: "Ingenieria Electronica",
-      value: 1
+      value: 'electronica'
     },
     {
       label: "Ingenieria industrial",
-      value: 2
+      value: 'industrial'
     },
     {
       label: "Administracion de empresas",
-      value: 3
+      value: 'Administracion'
     },
     {
       label: "Administración Logística",
-      value: 4
+      value: 'Logística'
     }
 
   ]

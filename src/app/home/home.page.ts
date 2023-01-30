@@ -1,24 +1,67 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+import { MenuController, ModalController, NavController } from '@ionic/angular';
+import { LibraryService } from '../services/library.service';
+import { BooksModalPage } from '../books-modal/books-modal.page';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-
 export class HomePage {
-  constructor(private navCtrl: NavController, storage: Storage){
+  authors: any;
+  booksOff: any;
 
+  slideOps = {
+    initialSlide: 1,
+    slidesPerView: 3,
+    centeredSlides: true,
+    speed: 400
+  }
+  constructor(
+    private libraryService: LibraryService,
+    private modalController: ModalController,
+    private navCtrl: NavController,
+    private menu: MenuController
+    ) {}
+
+  ionViewDidEnter(){
+
+    this.libraryService.getAuthors().then( res => {
+      this.authors = res;
+    })
+
+    this.booksOff = this.libraryService.getBooksOffline();
+    console.log(this.booksOff.books);
   }
 
-  goToPagina2(){
-    this.navCtrl.navigateForward('/intro');
+  async showBooks(author:any) {
+    const modal = await this.modalController.create({
+      component: BooksModalPage,
+      componentProps: {
+        author: author
+      }
+    });
+    return await modal.present();
   }
 
-  
+  goToAuthors(){
+    this.navCtrl.navigateForward("/menu/authors");
+    this.menu.close();
+  }
 
-  
- 
+  goToBooks(){
+    this.navCtrl.navigateForward("/menu/books");
+    this.menu.close();
+  }
+
+  goToMyFavorites(){
+    this.navCtrl.navigateForward("/menu/favorite-books");
+    this.menu.close();
+  }
+  goToTop(){
+    this.navCtrl.navigateForward("/top");
+    this.menu.close();
+  }
+
 }
