@@ -1,12 +1,13 @@
 <ion-header>
     <ion-toolbar>
+        <ion-title>Home</ion-title>
         <ion-buttons slot="end">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <p class="ion-text-center ion-text-uppercase">Hola soy el home</p>
+    <p class="ion-text-center ion-text-uppercase">Autores reconocidos </p>
     <div class="flex justify-center align-center">
         <ion-slides [options]="slideOps">
             <ion-slide *ngFor="let author of authors">

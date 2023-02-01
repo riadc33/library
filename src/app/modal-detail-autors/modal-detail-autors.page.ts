@@ -11,9 +11,12 @@ export class ModalDetailAutorsPage implements OnInit {
 
   constructor(
     private navParams: NavParams,
+    private modalController: ModalController,
 
   ) { }
-
+  closeModal(){
+    this.modalController.dismiss();
+  }
   ngOnInit() {
     this.data = this.navParams.get("author");
     console.log("pito flauta", this.data);

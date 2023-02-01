@@ -1,12 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text="Volver" ></ion-back-button>
+    <ion-buttons>
+      <ion-button slot="end" (click)="back()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title>Autores</ion-title>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-menu-button ></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Autores</ion-title>
   </ion-toolbar>
 </ion-header>
 

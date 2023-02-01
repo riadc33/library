@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LibraryService } from '../services/library.service';
 import { Storage } from '@ionic/storage-angular';
 import { AlertController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
+import { ModalController,NavController } from '@ionic/angular';
 import { BookDetailModalPage } from '../book-detail-modal/book-detail-modal.page';
+
 
 @Component({
   selector: 'app-favorite-books',
@@ -18,7 +19,9 @@ export class FavoriteBooksPage implements OnInit {
     private modalController: ModalController,
     private libraryService: LibraryService,
     private storage: Storage,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private navCtrl: NavController,
+
     ) { }
 
   async ngOnInit() {
@@ -30,7 +33,9 @@ export class FavoriteBooksPage implements OnInit {
       this.presentAlert("Opps", "hubo un error", error)
     )
   }
-
+  back(){
+    this.navCtrl.navigateForward('menu/home');
+  }
   async presentAlert(header: any, subHeader: any, message: any) {
     const alert = await this.alertController.create(
       {

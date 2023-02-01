@@ -1,13 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>modal-detail-autors</ion-title>
+    <ion-buttons>
+      <ion-button slot="end" (click)="closeModal()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item >
-      <ion-label>{{data.name}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="flex flex-col justify-center item-center">
+      <img class="imagen" src={{data.photo}}/>
+      <ion-label class="label">Nombre</ion-label>
+      <ion-label class="marginbottom">{{data.name}}</ion-label>
+
+      <ion-label class="label">Generos</ion-label>
+      <ion-label class="marginbottom">{{data.genres}}</ion-label>
+
+      <ion-label class="label">Seguidores</ion-label>
+      <ion-label class="marginbottom">{{data.followers}}</ion-label>
+     
+
+  </div>
 </ion-content>

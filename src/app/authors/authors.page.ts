@@ -16,6 +16,7 @@ export class AuthorsPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private libraryService: LibraryService,
+    private navCtrl: NavController,
     ) { }
 
   ngOnInit() {
@@ -23,6 +24,10 @@ export class AuthorsPage implements OnInit {
       this.authors = res;
 
     })
+  }
+
+  back(){
+    this.navCtrl.navigateForward('menu/home');
   }
   async goToDetail(author:any) {
     const modal = await this.modalController.create({

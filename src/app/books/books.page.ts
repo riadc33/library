@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { BookDetailModalPage } from '../book-detail-modal/book-detail-modal.page';
 import { LibraryService } from '../services/library.service';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-books',
@@ -12,7 +14,9 @@ export class BooksPage implements OnInit {
   books: any;
   constructor(
     private libraryService: LibraryService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private navCtrl: NavController,
+
     ) { }
 
   ngOnInit() {
@@ -20,7 +24,9 @@ export class BooksPage implements OnInit {
       this.books = books;
     })
   }
-
+  back(){
+    this.navCtrl.navigateForward('menu/home');
+  }
   async showBook(book: any){
     const modal = await this.modalController.create({
       component: BookDetailModalPage,
